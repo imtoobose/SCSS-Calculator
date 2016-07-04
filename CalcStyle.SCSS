@@ -1,0 +1,147 @@
+@import url('https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,300');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
+@mixin center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+}
+
+$back:#191428;
+
+.bck{
+  display:block;
+  @include center;
+  z-index:-100;
+  height:100%;
+  width:100%;
+  background:radial-gradient(hsl(0, 0, 80), hsl(240, 5, 60));
+}
+
+body{
+  background:hsl(21, 70, 50);
+}
+
+.container {
+  display:block;
+  width:350px;
+  height:450px;
+  border-radius:15px;
+  //border: solid rgba(8, 4, 19, 0.2) 2px;
+  box-shadow: 4px 4px 14px rgba(8, 4, 19, 0.3);
+  @include center;
+  background:$back;
+  &:after{
+    content:'';
+    display:block;
+    height:100%;
+    width:100%;
+    border-radius: 15px;
+    @include center;
+    z-index:-1;
+    box-shadow: -4px 4px 8px rgba(8, 4, 19, 0.2);
+  }
+}
+
+.number-view{
+  display:block;
+  position: absolute;
+  left:50%;
+  text-align:right;
+  transform:translateX(-50%);
+  margin-top:30px;
+  height:40px;
+  width: 300px;
+  border:none;
+  font-family:'Oswald';
+  font-size:25px;
+  font-weight:300;
+  border-bottom: solid white 2px;
+  &:focus{
+    outline:none;
+    color:black;
+  }
+  &:disabled{
+    background:$back;
+    opacity:1;
+    color:white;
+  }
+}
+
+.buttons{
+  position:absolute;
+  width: 300px;
+  height:340px;
+  display:block;
+  left:50%;
+  transform:translateX(-50%);
+  //border:solid black 2px;
+  margin-top:90px;
+}
+
+.btn{
+  display:block;
+  float:left;
+  font-family: 'Oswald';
+  margin-top:6px;
+  margin-bottom:3px;
+  margin-left:12px;
+  width:60px;
+  height:60px;
+  text-align:center;
+  background:none;
+  font-size:25px;
+  padding:none;
+  border:none;
+  margin:none;
+  box-shadow:none;
+  outline:none;
+  border: solid 3px;
+  border-radius:50%;
+  transition:all 0.25s linear;
+  &:hover{
+    background:black;
+    color:white;
+  }
+}
+
+.ion-backspace-outline{
+  font-size:27px;
+  position:absolute;
+  left:12px;
+  top:6px;
+  pointer-events:none;
+}
+
+#back{
+  position:relative;
+  //height:56px;
+  //width:67px;
+}
+#val-CE, #val-C, #val-ANS, #back{
+  font-size:20px;
+}
+
+#val--, #val-plus, #val-div, #val-equal, #val-x{
+  font-family:'Open Sans';
+  font-size:35px;
+}
+//color stuff
+$angle:0;
+$color: hsl($angle, 70%, 48%);
+$list: 'val-CE','val-C','back','val-div', 'val-7', 'val-8', 'val-9', 'val-x', 'val-4', 'val-5', 'val-6', 'val--', 'val-3', 'val-2', 'val-1', 'val-plus', 'val-dot', 'val-0', 'val-ANS', 'val-equal';
+
+@each $i in $list{
+  ##{$i}{
+    border-color:$color;
+    color:$color;
+    &:hover{
+      background:$color;
+      color:$back;
+    }
+    $angle:$angle+12;
+    $color:hsl($angle, 70%, 50%);
+  }
+}
